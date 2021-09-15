@@ -1,0 +1,16 @@
+chuveiro
+10
+5
+microondas
+15
+0.5
+ar-condicionado
+30
+10
+geladeira
+25
+24
+televisão
+5
+3
+30

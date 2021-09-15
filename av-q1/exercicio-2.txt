@@ -1,0 +1,16 @@
+1
+Joaquim Silva
+Biologia
+2
+Maria Cristina
+Licenciatura em Psicologia
+3
+Joana Fonseca
+Bacharelado em Geografia
+4
+Luma de Lima
+Geografia
+5
+Jucelino Fonseca
+Biologia
+Licenciatura em Psicologia
