@@ -1,14 +1,22 @@
 #include<stdio.h>
 
-int ciclo(int n) {
-  
+int mdc(int a, int b) {
+  float r = a % b;
+
+  if(r == 0) {
+    return b;
+  } else {
+    return mdc(b, r);
+  }
+
 }
 
 int main() {
-  int n;
+  int a, b;
 
-  scanf("%d", &n);
+  scanf("%d", &a);
+  scanf("%d", &b);
 
-  printf("%d\n", ciclo(n));
+  printf("%d\n", mdc(a, b));
   return 0;
 }
