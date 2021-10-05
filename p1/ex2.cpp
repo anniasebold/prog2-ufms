@@ -9,11 +9,11 @@ int A(int m, int n) {
     return n + 1;
   }
   else if (n == 0) {
-    printf("%d\n", count);
+    printf("1\n");
     return A(m - 1, 1);
   }
   else {
-    printf("%d\n", count);
+    printf("2\n");
     return A(m - 1, A(m, n - 1));
   }
 }

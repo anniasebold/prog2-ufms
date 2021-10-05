@@ -1,0 +1,3 @@
+turma1.txt 4
+turma2.txt 5
+turma3.txt 5

@@ -1,21 +1,23 @@
 #include<stdio.h>
 
 int potencia(int x, int n) {
-  int count = 0;
+  int num = 0;
 
-  if(n > 1) {
-    n = n/2;
-    count += 1;
-    count += piso_log2(n);
+  if(n == 0) {
+    num += 1;
   }
-
-  return count;
+  else if(n%2 == 0) {
+    num += potencia(x, n/2) * potencia(x, n/2);
+  } else {
+    num += x * potencia(x, n-1);
+  }
+  return num;
 }
 
 int main() {
-  int n;
+  int x, n;
 
-  scanf("%d", &n);
+  scanf("%d %d", &x, &n);
 
   printf("%d\n", potencia(x, n));
   return 0;
