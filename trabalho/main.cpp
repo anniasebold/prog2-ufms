@@ -1,16 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#define MAX 80
-
-struct Aluno {
-  char nome[MAX];
-  int RA;
-  double notaP1, notapP2, notaT, notaPO, mediaFinal;
-};
+#include "features.h"
 
 int main() {
-  int opcao;
+  int opcao, n;
+  Aluno aluno[MAX];
 
   system("clear");
   do {
@@ -26,10 +18,10 @@ int main() {
     system("clear");
 
     if(opcao == 1) {
-      printf("Opcao 1");
+      cadastrarAluno(aluno, n);
     }
     else if(opcao == 2) {
-      printf("Opcao 2");
+      buscarAluno(aluno, n);
     }
     else if(opcao == 3) {
       printf("Opcao 3");
