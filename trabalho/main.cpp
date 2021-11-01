@@ -35,6 +35,10 @@ int main() {
     else if(opcao == 6) {
       printf("Opcao 6\n");
     }
+    else {
+      printf("Opção Inválida");
+    }
+    printf("\n=====================================\n");
 
   } while(opcao != 6);
 

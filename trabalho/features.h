@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include<time.h>
 
 #define MAX 80
 #define SIT 8
@@ -17,3 +18,4 @@ void buscarAluno(Aluno aluno[], int n);
 
 void calcularMediaFinal(Aluno aluno[], int n);
 void situacaoAluno(Aluno aluno[], int n);
+void wait();

@@ -4,7 +4,7 @@ void cadastrarAluno(Aluno aluno[], int &n) {
   printf("\nCadastro de Aluno");
   printf("\nInforme Nome, RA, Nota P1, Nota P2, Nota Trabalho e Nota PO");
   printf("\nCaso a PO não tenha sido realizada preencha com 0 na NOTA PO\n");
-  scanf("%s %d %lf %lf %lf %lf", 
+  scanf("%[^0123456789\t] %d %lf %lf %lf %lf", 
   aluno[n].nome, 
   &aluno[n].RA, 
   &aluno[n].notaP1, 
@@ -13,14 +13,17 @@ void cadastrarAluno(Aluno aluno[], int &n) {
   &aluno[n].notaPO);
 
   situacaoAluno(aluno, n);
+  printf("Aluno cadastrado!");
+  system("clear");
+  // wait();
   n++;
 };
 
 void buscarAluno(Aluno aluno[], int n) {
-  printf("\nBusca de Aluno\n");
+  printf("\nBusca de Aluno");
   int i;
   for(i = 0; i < n; i++) {
-    printf("%s %.1lf %s\n", 
+    printf("%s %.1lf %s", 
     aluno[i].nome, 
     aluno[i].mediaFinal,
     aluno[i].situacao);
@@ -46,4 +49,12 @@ void situacaoAluno(Aluno aluno[], int n) {
   } else {
     strcpy(aluno[n].situacao, "Reprovado");
   }
+};
+
+void wait(){
+    struct timespec tim, tim2;
+    tim.tv_sec  = 1;
+    tim.tv_nsec = 0;
+
+    nanosleep(&tim, &tim2);
 };
