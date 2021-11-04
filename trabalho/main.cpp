@@ -6,9 +6,9 @@ int main() {
 
   system("clear");
   do {
-    printf("\nMenu de opções:");
+    printf("Menu de opções:");
     printf("\n[1] Cadastrar um novo aluno");
-    printf("\n[2] Buscar aluno");
+    printf("\n[2] Buscar aluno pelo nome");
     printf("\n[3] Ler arquivo com listagem de alunos");
     printf("\n[4] Gerar arquivos com alunos APROVADOS");
     printf("\n[5] Gerar arquivos com alunos REPROVADOS");
@@ -18,10 +18,10 @@ int main() {
     system("clear");
 
     if(opcao == 1) {
-      cadastrarAluno(aluno, n);
+      cadastraAluno(aluno, n);
     }
     else if(opcao == 2) {
-      buscarAluno(aluno, n);
+      buscaAluno(aluno, n);
     }
     else if(opcao == 3) {
       printf("Opcao 3");
@@ -38,7 +38,7 @@ int main() {
     else {
       printf("Opção Inválida");
     }
-    printf("\n=====================================\n");
+    printf("\n");
 
   } while(opcao != 6);
 
