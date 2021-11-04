@@ -15,8 +15,6 @@ void cadastraAluno(Aluno aluno[], int &n) {
 
   situacaoAluno(aluno, n);
   printf("Aluno cadastrado!\n");
-  wait();
-  // system("clear");
   n++;
 };
 
@@ -26,46 +24,41 @@ void ordenaAluno(Aluno aluno[], int n) {
 
 void buscaAluno(Aluno aluno[], int n) {
   char busca[MAX];
-  // printf("Digite o nome que deseja buscar: ");
-  // scanf(" %s", busca);
-  // printf("%s", busca);
-  ordenaAluno(aluno, n);
-  int i;
+  int count, i;
+  printf("\nDigite o nome que deseja buscar: \n");
+  scanf(" %[^\n]", busca);
+
   for(i = 0; i < n; i++) {
-    printf("%-25s\t%7.1lf\t\t\t%10s", 
-    aluno[i].nome, 
-    aluno[i].mediaFinal,
-    aluno[i].situacao);
+    if(strcasestr(aluno[i].nome, busca)) {
+      printf("%-25s\t%7.1lf\t\t\t%10s", 
+      aluno[i].nome, 
+      aluno[i].mediaFinal,
+      aluno[i].situacao);
+      count++;
+    }
   }
+  printf("\nTotal de alunos encontrados: %d\n", count);
 };
 
 void calculaMediaFinal(Aluno aluno[], int n) {
   if(aluno[n].notaP1 < aluno[n].notaPO) {
-    printf("Entrou caso 1\n");
     if (aluno[n].notaP1 < aluno[n].notaP2) {
-      printf("Entrou caso 1.1\n");
       aluno[n].mediaFinal = (0.35*aluno[n].notaPO) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
     }
-    if(aluno[n].notaP2 > aluno[n].notaPO) {
-      printf("Entrou caso 1.2\n");
-      aluno[n].mediaFinal = (0.35*aluno[n].notaPO) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
-    }
+    // if(aluno[n].notaP2 > aluno[n].notaPO) {
+    //   aluno[n].mediaFinal = (0.35*aluno[n].notaPO) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
+    // }
   }
   if(aluno[n].notaP2 < aluno[n].notaPO) {
-    printf("Entrou caso 2\n");
     if (aluno[n].notaP2 < aluno[n].notaP1) {
-      printf("Entrou caso 2.1\n");
       aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaPO) + (0.3*aluno[n].notaT);
     }
-    if (aluno[n].notaP1 > aluno[n].notaPO){
-      printf("Entrou caso 2.2\n");
-      aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaPO) + (0.3*aluno[n].notaT);
-    }
+    // if (aluno[n].notaP1 > aluno[n].notaPO){
+    //   aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaPO) + (0.3*aluno[n].notaT);
+    // }
   } 
   else {
-    printf("Entrou caso 3\n");
     if(aluno[n].mediaFinal < 6) {
-      printf("Entrou caso 3.1\n");
       aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
     }
   }
@@ -78,12 +71,4 @@ void situacaoAluno(Aluno aluno[], int n) {
   } else {
     strcpy(aluno[n].situacao, "Reprovado");
   }
-};
-
-void wait(){
-  struct timespec tim, tim2;
-  tim.tv_sec  = 1;
-  tim.tv_nsec = 0;
-
-  nanosleep(&tim, &tim2);
 };

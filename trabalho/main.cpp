@@ -25,6 +25,13 @@ int main() {
     }
     else if(opcao == 3) {
       printf("Opcao 3");
+      int i;
+      for(i = 0; i < n; i++) {
+        printf("%-25s\t%7.1lf\t\t\t%10s", 
+        aluno[i].nome, 
+        aluno[i].mediaFinal,
+        aluno[i].situacao);
+      }
     }
     else if(opcao == 4) {
       printf("Opcao 4");

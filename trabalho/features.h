@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
+#include <ctype.h>
 
 #define MAX 80
 #define SIT 8
