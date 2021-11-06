@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
+// #include <ctype.h>
 
 #define MAX 80
 #define SIT 8
@@ -13,10 +13,9 @@ struct Aluno {
 };
 
 void cadastraAluno(Aluno aluno[], int &n);
+void leArquivo(Aluno aluno[], int &n);
 void buscaAluno(Aluno aluno[], int n);
 void ordenaAluno(Aluno aluno[], int n);
-void troca(int &i, int &min);
-
 
 void calculaMediaFinal(Aluno aluno[], int n);
 void situacaoAluno(Aluno aluno[], int n);

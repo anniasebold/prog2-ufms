@@ -40,6 +40,36 @@ void buscaAluno(Aluno aluno[], int n) {
   printf("\nTotal de alunos encontrados: %d\n", count);
 };
 
+void leArquivo(Aluno aluno[], int &n) {
+  FILE*  arq; 
+  char nome[MAX];
+  int i, count = 0;
+  printf("Digite o nome do arquivo que deseja ler: \n");
+  scanf(" %s", nome);
+
+  arq = fopen(nome, "r");
+
+  if(arq == NULL) {
+    printf("\nArquivo %s nao pode ser aberto.\n", nome);
+  } else {
+    while( feof(arq) == 0 ) {
+      fscanf(arq, "%[^0123456789\t] %d %lf %lf %lf %lf", 
+      aluno[n].nome, 
+      &aluno[n].RA, 
+      &aluno[n].notaP1, 
+      &aluno[n].notaP2, 
+      &aluno[n].notaT, 
+      &aluno[n].notaPO);
+
+      situacaoAluno(aluno, n);
+      n++;
+      count += 1;
+    }
+    fclose(arq);
+    printf("\nAlunos lidos: %d\n", count);
+  }
+}
+
 void calculaMediaFinal(Aluno aluno[], int n) {
   if(aluno[n].notaP1 < aluno[n].notaPO) {
     if (aluno[n].notaP1 < aluno[n].notaP2) {
