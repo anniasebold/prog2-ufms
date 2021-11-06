@@ -1,5 +1,6 @@
 #include "features.h"
 
+// BASE
 void cadastraAluno(Aluno aluno[], int &n) {
   printf("Total de alunos: %d\n", n);
   printf("\nCadastro de Aluno");
@@ -41,18 +42,18 @@ void buscaAluno(Aluno aluno[], int n) {
 };
 
 void leArquivo(Aluno aluno[], int &n) {
-  FILE*  arq; 
-  char nome[MAX];
-  int i, count = 0;
+  FILE *arq; 
+  char nomeArq[MAX];
+  int i, count;
   printf("Digite o nome do arquivo que deseja ler: \n");
-  scanf(" %s", nome);
+  scanf(" %s", nomeArq);
 
-  arq = fopen(nome, "r");
+  arq = fopen(nomeArq, "r");
 
   if(arq == NULL) {
-    printf("\nArquivo %s nao pode ser aberto.\n", nome);
+    printf("Arquivo %s nao pode ser aberto.\n", nomeArq);
   } else {
-    while( feof(arq) == 0 ) {
+    while(feof(arq) == 0) {
       fscanf(arq, "%[^0123456789\t] %d %lf %lf %lf %lf", 
       aluno[n].nome, 
       &aluno[n].RA, 
@@ -63,12 +64,93 @@ void leArquivo(Aluno aluno[], int &n) {
 
       situacaoAluno(aluno, n);
       n++;
-      count += 1;
+      count++;
     }
     fclose(arq);
-    printf("\nAlunos lidos: %d\n", count);
+    printf("Alunos lidos: %d\n", count);
   }
 }
+
+void geraArquivoAprovados(Aluno aluno[], int n) {
+  FILE *arq; 
+  int i, count;
+  char nomeArq[MAX];
+  strcpy(nomeArq, "aprovados.txt");
+
+  arq = fopen(nomeArq, "w");
+
+  if(arq == NULL) {
+    printf("Arquivo %s nao pode ser gerado.\n", nomeArq);
+  } else {
+    for(i = 0; i < n; i++) {
+      if(strcmp(aluno[i].situacao, "Aprovado") == 0) {
+        fprintf(arq, "%-30s\t\t%d\t\t\t%7.1lf", 
+        aluno[i].nome,
+        aluno[i].RA,
+        aluno[i].mediaFinal);
+        count++;
+      }
+    }
+    printf("Total de alunos APROVADOS: %d\n", count);
+    printf("Arquivo '%s' gerado com sucesso.\n", nomeArq);
+    fclose(arq);
+  }
+}
+
+void geraArquivoReprovados(Aluno aluno[], int n) {
+  FILE *arq; 
+  int i, count;
+  char nomeArq[MAX];
+  strcpy(nomeArq, "reprovados.txt");
+
+  arq = fopen(nomeArq, "w");
+
+  if(arq == NULL) {
+    printf("Arquivo %s nao pode ser gerado.\n", nomeArq);
+  } else {
+    for(i = 0; i < n; i++) {
+      if(strcmp(aluno[i].situacao, "Reprovado") == 0) {
+        fprintf(arq, "%-30s\t\t%d\t\t\t%7.1lf", 
+        aluno[i].nome,
+        aluno[i].RA,
+        aluno[i].mediaFinal);
+        count++;
+      }
+    }
+    printf("Total de alunos REPROVADOS: %d\n", count);
+    printf("Arquivo '%s' gerado com sucesso.\n", nomeArq);
+    fclose(arq);
+  }
+}
+
+void geraArquivoCadastrados(Aluno aluno[], int n) {
+  FILE *arq; 
+  int i;
+  char nomeArq[MAX];
+  strcpy(nomeArq, "atual.txt");
+
+  arq = fopen(nomeArq, "w");
+
+  if(arq == NULL) {
+    printf("Arquivo %s nao pode ser gerado.\n", nomeArq);
+  } else {
+    for(i = 0; i < n; i++) {
+      fprintf(arq, "%s %d %.1lf %.1lf %.1lf %.1lf", 
+        aluno[i].nome, 
+        aluno[i].RA, 
+        aluno[i].notaP1, 
+        aluno[i].notaP2, 
+        aluno[i].notaT, 
+        aluno[i].notaPO);
+    }
+    printf("Arquivo '%s' gerado com dados cadastrados.\n", nomeArq);
+    printf("Fechando programa, volte sempre!\n");
+    fclose(arq);
+  }
+}
+
+
+// ADICIONAIS
 
 void calculaMediaFinal(Aluno aluno[], int n) {
   if(aluno[n].notaP1 < aluno[n].notaPO) {
@@ -92,7 +174,7 @@ void calculaMediaFinal(Aluno aluno[], int n) {
       aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
     }
   }
-};
+}
 
 void situacaoAluno(Aluno aluno[], int n) {
   calculaMediaFinal(aluno, n);
@@ -101,4 +183,4 @@ void situacaoAluno(Aluno aluno[], int n) {
   } else {
     strcpy(aluno[n].situacao, "Reprovado");
   }
-};
+}

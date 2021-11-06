@@ -13,10 +13,12 @@ struct Aluno {
 };
 
 void cadastraAluno(Aluno aluno[], int &n);
+void ordenaAluno(Aluno aluno[], int n);
 void leArquivo(Aluno aluno[], int &n);
 void buscaAluno(Aluno aluno[], int n);
-void ordenaAluno(Aluno aluno[], int n);
+void geraArquivoAprovados(Aluno aluno[], int n);
+void geraArquivoReprovados(Aluno aluno[], int n);
+void geraArquivoCadastrados(Aluno aluno[], int n);
 
 void calculaMediaFinal(Aluno aluno[], int n);
 void situacaoAluno(Aluno aluno[], int n);
-void wait();

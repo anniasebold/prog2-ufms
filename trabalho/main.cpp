@@ -27,18 +27,13 @@ int main() {
      leArquivo(aluno, n);
     }
     else if(opcao == 4) {
-      for(int i = 0; i < n; i++) {
-        printf("%-25s\t%7.1lf\t\t\t%10s", 
-        aluno[i].nome, 
-        aluno[i].mediaFinal,
-        aluno[i].situacao);
-      }
+      geraArquivoAprovados(aluno, n);
     }
     else if(opcao == 5) {
-      printf("Opcao 5");
+      geraArquivoReprovados(aluno, n);
     }
     else if(opcao == 6) {
-      printf("Opcao 6\n");
+      geraArquivoCadastrados(aluno, n);
     }
     else {
       printf("Opção Inválida");
