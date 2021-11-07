@@ -24,7 +24,7 @@ int main() {
       buscaAluno(aluno, n);
     }
     else if(opcao == 3) {
-     leArquivo(aluno, n);
+      leArquivo(aluno, n);
     }
     else if(opcao == 4) {
       geraArquivoAprovados(aluno, n);

@@ -84,14 +84,14 @@ void geraArquivoAprovados(Aluno aluno[], int n) {
   } else {
     for(i = 0; i < n; i++) {
       if(strcmp(aluno[i].situacao, "Aprovado") == 0) {
-        fprintf(arq, "%-30s\t\t%d\t\t\t%7.1lf", 
+        fprintf(arq, "%s %d %.1lf", 
         aluno[i].nome,
         aluno[i].RA,
         aluno[i].mediaFinal);
         count++;
       }
     }
-    printf("Total de alunos APROVADOS: %d\n", count);
+    fprintf(arq, "\nTotal: %d", count);
     printf("Arquivo '%s' gerado com sucesso.\n", nomeArq);
     fclose(arq);
   }
@@ -110,14 +110,14 @@ void geraArquivoReprovados(Aluno aluno[], int n) {
   } else {
     for(i = 0; i < n; i++) {
       if(strcmp(aluno[i].situacao, "Reprovado") == 0) {
-        fprintf(arq, "%-30s\t\t%d\t\t\t%7.1lf", 
+        fprintf(arq, "%s %d %.1lf", 
         aluno[i].nome,
         aluno[i].RA,
         aluno[i].mediaFinal);
         count++;
       }
     }
-    printf("Total de alunos REPROVADOS: %d\n", count);
+    fprintf(arq, "\nTotal: %d", count);
     printf("Arquivo '%s' gerado com sucesso.\n", nomeArq);
     fclose(arq);
   }
@@ -157,17 +157,11 @@ void calculaMediaFinal(Aluno aluno[], int n) {
     if (aluno[n].notaP1 < aluno[n].notaP2) {
       aluno[n].mediaFinal = (0.35*aluno[n].notaPO) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
     }
-    // if(aluno[n].notaP2 > aluno[n].notaPO) {
-    //   aluno[n].mediaFinal = (0.35*aluno[n].notaPO) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
-    // }
   }
   if(aluno[n].notaP2 < aluno[n].notaPO) {
     if (aluno[n].notaP2 < aluno[n].notaP1) {
       aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaPO) + (0.3*aluno[n].notaT);
     }
-    // if (aluno[n].notaP1 > aluno[n].notaPO){
-    //   aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaPO) + (0.3*aluno[n].notaT);
-    // }
   } 
   else {
     if(aluno[n].mediaFinal < 6) {
