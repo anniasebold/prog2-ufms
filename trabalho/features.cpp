@@ -1,6 +1,5 @@
 #include "features.h"
 
-// BASE
 void cadastraAluno(Aluno aluno[], int &n) {
   printf("Total de alunos: %d\n", n);
   printf("\nCadastro de Aluno");
@@ -15,26 +14,57 @@ void cadastraAluno(Aluno aluno[], int &n) {
   &aluno[n].notaPO);
 
   situacaoAluno(aluno, n);
+  ordenacaoSelecaoAluno(aluno, n);
   printf("Aluno cadastrado!\n");
   n++;
 };
 
-void ordenaAluno(Aluno aluno[], int n) {
+void ordenacaoSelecaoAluno(Aluno aluno[], int n) {
+  int i, j, men;
 
+  for(i = 0; i < n-1; i++) {
+    men = i;
+    for(j = i+1; j < n; j++) {
+      if(strcmp(
+        aluno[j].nome,
+        aluno[men].nome) < 0) {
+        men = j;
+      }
+      else if(strcmp(
+        aluno[j].nome,
+        aluno[men].nome) == 0) {
+          if (aluno[j].RA < aluno[men].RA) {
+            men = j;
+          }
+      }
+    }
+    troca(aluno[i], aluno[men]);
+  }
 }
 
-void buscaAluno(Aluno aluno[], int n) {
+void troca(Aluno &indice, Aluno &menor) {
+  Aluno aux;
+
+  aux = indice;
+  indice = menor;
+  menor = aux;
+}
+
+void buscaAlunos(Aluno aluno[], int n) {
   char busca[MAX];
   int count, i;
   printf("\nDigite o nome que deseja buscar: ");
   scanf(" %[^\n]", busca);
+  printf("\n");
 
+  ordenacaoSelecaoAluno(aluno, n);
   for(i = 0; i < n; i++) {
     if(strcasestr(aluno[i].nome, busca)) {
-      printf("%-25s\t%7.1lf\t\t\t%10s", 
+      printf("%-25s\t%7.1lf\t\t\t%10s\t%d", 
       aluno[i].nome, 
       aluno[i].mediaFinal,
-      aluno[i].situacao);
+      aluno[i].situacao,
+      aluno[i].RA);
       count++;
     }
   }
@@ -51,7 +81,7 @@ void leArquivo(Aluno aluno[], int &n) {
   arq = fopen(nomeArq, "r");
 
   if(arq == NULL) {
-    printf("Arquivo %s nao pode ser aberto.\n", nomeArq);
+    printf("\nArquivo %s nao pode ser aberto.\n", nomeArq);
   } else {
     while(feof(arq) == 0) {
       fscanf(arq, "%[^0123456789\t] %d %lf %lf %lf %lf", 
@@ -66,6 +96,7 @@ void leArquivo(Aluno aluno[], int &n) {
       n++;
       count++;
     }
+    ordenacaoSelecaoAluno(aluno, n);
     fclose(arq);
     printf("Alunos lidos: %d\n", count);
   }
@@ -130,7 +161,8 @@ void geraArquivoCadastrados(Aluno aluno[], int n) {
   strcpy(nomeArq, "atual.txt");
 
   arq = fopen(nomeArq, "w");
-
+  ordenacaoSelecaoAluno(aluno, n);
+  
   if(arq == NULL) {
     printf("Arquivo %s nao pode ser gerado.\n", nomeArq);
   } else {
@@ -148,9 +180,6 @@ void geraArquivoCadastrados(Aluno aluno[], int n) {
     fclose(arq);
   }
 }
-
-
-// ADICIONAIS
 
 void situacaoAluno(Aluno aluno[], int n) {
 

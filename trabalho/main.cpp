@@ -21,7 +21,7 @@ int main() {
       cadastraAluno(aluno, n);
     }
     else if(opcao == 2) {
-      buscaAluno(aluno, n);
+      buscaAlunos(aluno, n);
     }
     else if(opcao == 3) {
       leArquivo(aluno, n);

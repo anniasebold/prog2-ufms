@@ -12,12 +12,11 @@ struct Aluno {
 };
 
 void cadastraAluno(Aluno aluno[], int &n);
-void ordenaAluno(Aluno aluno[], int n);
+void situacaoAluno(Aluno aluno[], int n);
+void ordenacaoSelecaoAluno(Aluno aluno[], int n);
+void troca(Aluno &indiceAtual, Aluno &menorAluno);
 void leArquivo(Aluno aluno[], int &n);
-void buscaAluno(Aluno aluno[], int n);
+void buscaAlunos(Aluno aluno[], int n);
 void geraArquivoAprovados(Aluno aluno[], int n);
 void geraArquivoReprovados(Aluno aluno[], int n);
 void geraArquivoCadastrados(Aluno aluno[], int n);
-
-void calculaMediaFinal(Aluno aluno[], int n);
-void situacaoAluno(Aluno aluno[], int n);
