@@ -57,9 +57,9 @@ void buscaAlunos(Aluno aluno[], int n) {
   scanf(" %[^\n]", busca);
   printf("\n");
 
-  ordenacaoSelecaoAluno(aluno, n);
   for(i = 0; i < n; i++) {
     if(strcasestr(aluno[i].nome, busca)) {
+      ordenacaoSelecaoAluno(aluno, n);
       printf("%-25s\t%7.1lf\t\t\t%10s\t\n", 
       aluno[i].nome, 
       aluno[i].mediaFinal,
@@ -109,6 +109,7 @@ void geraArquivoAprovados(Aluno aluno[], int n) {
 
   arq = fopen(nomeArq, "w");
 
+  ordenacaoSelecaoAluno(aluno, n);
   if(arq == NULL) {
     printf("Arquivo %s nao pode ser gerado.\n", nomeArq);
   } else {
@@ -134,6 +135,7 @@ void geraArquivoReprovados(Aluno aluno[], int n) {
   strcpy(nomeArq, "reprovados.txt");
 
   arq = fopen(nomeArq, "w");
+  ordenacaoSelecaoAluno(aluno, n);
 
   if(arq == NULL) {
     printf("Arquivo %s nao pode ser gerado.\n", nomeArq);
@@ -183,20 +185,14 @@ void geraArquivoCadastrados(Aluno aluno[], int n) {
 void situacaoAluno(Aluno aluno[], int n) {
 
   // MEDIA
-  if(aluno[n].notaP1 < aluno[n].notaPO) {
-    if (aluno[n].notaP1 < aluno[n].notaP2) {
-      aluno[n].mediaFinal = (0.35*aluno[n].notaPO) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
-    }
+  if(aluno[n].notaP1 <= aluno[n].notaPO && aluno[n].notaP1 <= aluno[n].notaP2) {
+    aluno[n].mediaFinal = (0.35*aluno[n].notaPO) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
   }
-  if(aluno[n].notaP2 < aluno[n].notaPO) {
-    if (aluno[n].notaP2 < aluno[n].notaP1) {
-      aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaPO) + (0.3*aluno[n].notaT);
-    }
+  else if(aluno[n].notaP2 < aluno[n].notaPO && aluno[n].notaP2 < aluno[n].notaP1) {
+    aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaPO) + (0.3*aluno[n].notaT);
   } 
   else {
-    if(aluno[n].mediaFinal < 6) {
-      aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
-    }
+    aluno[n].mediaFinal = (0.35*aluno[n].notaP1) + (0.35*aluno[n].notaP2) + (0.3*aluno[n].notaT);
   }
 
   // SITUAÇÃO
