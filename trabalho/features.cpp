@@ -60,11 +60,10 @@ void buscaAlunos(Aluno aluno[], int n) {
   ordenacaoSelecaoAluno(aluno, n);
   for(i = 0; i < n; i++) {
     if(strcasestr(aluno[i].nome, busca)) {
-      printf("%-25s\t%7.1lf\t\t\t%10s\t%d", 
+      printf("%-25s\t%7.1lf\t\t\t%10s\t\n", 
       aluno[i].nome, 
       aluno[i].mediaFinal,
-      aluno[i].situacao,
-      aluno[i].RA);
+      aluno[i].situacao);
       count++;
     }
   }
@@ -84,7 +83,7 @@ void leArquivo(Aluno aluno[], int &n) {
     printf("\nArquivo %s nao pode ser aberto.\n", nomeArq);
   } else {
     while(feof(arq) == 0) {
-      fscanf(arq, "%[^0123456789\t] %d %lf %lf %lf %lf", 
+      fscanf(arq, "%[^0123456789\t] %d %lf %lf %lf %lf\n", 
       aluno[n].nome, 
       &aluno[n].RA, 
       &aluno[n].notaP1, 
@@ -115,7 +114,7 @@ void geraArquivoAprovados(Aluno aluno[], int n) {
   } else {
     for(i = 0; i < n; i++) {
       if(strcmp(aluno[i].situacao, "Aprovado") == 0) {
-        fprintf(arq, "\r%-35s\t\t%9d\t\t\t%4.1lf",
+        fprintf(arq, "%-35s\t\t%9d\t\t\t%4.1lf\n",
         aluno[i].nome,
         aluno[i].RA,
         aluno[i].mediaFinal);
@@ -141,7 +140,7 @@ void geraArquivoReprovados(Aluno aluno[], int n) {
   } else {
     for(i = 0; i < n; i++) {
       if(strcmp(aluno[i].situacao, "Reprovado") == 0) {
-        fprintf(arq, "%-35s\t\t%9d\t\t\t%4.1lf",
+        fprintf(arq, "%-35s\t\t%9d\t\t\t%4.1lf\n",
         aluno[i].nome,
         aluno[i].RA,
         aluno[i].mediaFinal);
@@ -167,7 +166,7 @@ void geraArquivoCadastrados(Aluno aluno[], int n) {
     printf("Arquivo %s nao pode ser gerado.\n", nomeArq);
   } else {
     for(i = 0; i < n; i++) {
-      fprintf(arq, "%s %d %.1lf %.1lf %.1lf %.1lf", 
+      fprintf(arq, "%s%d %.1lf %.1lf %.1lf %.1lf\n", 
         aluno[i].nome, 
         aluno[i].RA, 
         aluno[i].notaP1, 
