@@ -1,0 +1,15 @@
+## 📋 Sobre
+  Trabalho Final
+  RGA: 2021.1907.016-1
+  Aluna: Annia Luiza Sebold de Almeida
+  Matéria: Algoritmos e Programação II da UFMS.
+
+## 💾 Como utilizar 
+
+Compile todos os arquivos
+
+    gcc *.cpp -o trabalho
+
+Após isso inicialize o programa
+    
+    ./trabalho

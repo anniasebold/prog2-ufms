@@ -5,7 +5,7 @@ void cadastraAluno(Aluno aluno[], int &n) {
   printf("\nCadastro de Aluno");
   printf("\nInforme Nome, RA, Notas: P1, P2, Trabalho e PO");
   printf("\nCaso a PO não tenha sido realizada preencha com 0\n");
-  scanf("%[^0123456789\t] %d %lf %lf %lf %lf", 
+  scanf(" %[^0123456789\t] %d %lf %lf %lf %lf", 
   aluno[n].nome, 
   &aluno[n].RA, 
   &aluno[n].notaP1, 
@@ -57,9 +57,9 @@ void buscaAlunos(Aluno aluno[], int n) {
   scanf(" %[^\n]", busca);
   printf("\n");
 
+  ordenacaoSelecaoAluno(aluno, n);
   for(i = 0; i < n; i++) {
     if(strcasestr(aluno[i].nome, busca)) {
-      ordenacaoSelecaoAluno(aluno, n);
       printf("%-25s\t%7.1lf\t\t\t%10s\t\n", 
       aluno[i].nome, 
       aluno[i].mediaFinal,
@@ -122,7 +122,7 @@ void geraArquivoAprovados(Aluno aluno[], int n) {
         count++;
       }
     }
-    fprintf(arq, "\nTotal: %d", count);
+    fprintf(arq, "Total: %d", count);
     printf("Arquivo '%s' gerado com sucesso.\n", nomeArq);
     fclose(arq);
   }
@@ -149,7 +149,7 @@ void geraArquivoReprovados(Aluno aluno[], int n) {
         count++;
       }
     }
-    fprintf(arq, "\nTotal: %d", count);
+    fprintf(arq, "Total: %d", count);
     printf("Arquivo '%s' gerado com sucesso.\n", nomeArq);
     fclose(arq);
   }
