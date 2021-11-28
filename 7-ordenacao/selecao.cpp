@@ -18,10 +18,12 @@ int main() {
       if(v[j] < v[min])
         min = j;
     }
-    troca(&v[i], &v[min]);
+    troca(v[i], v[min]);
   }
 
-  // for(i = 0; i < n; i++) {
-  //   printf(" %d ", v[i]);
-  // }
+  for(i = 0; i < n; i++) {
+    printf("%d ", v[i]);
+  }
+  printf("\n");
+  return 0; 
 }
